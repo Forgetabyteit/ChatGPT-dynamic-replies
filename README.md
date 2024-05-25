@@ -50,7 +50,7 @@ To install the userscript, follow these steps:
 
 1. Install the [Tampermonkey extension](https://www.tampermonkey.net/) for your browser.
 2. Create a new userscript in Tampermonkey.
-3. Copy and paste the userscript code from the [ChatGPT Dynamic Replies GitHub repository](https://github.com/your-repo-link) into the new userscript.
+3. Copy and paste the userscript code from the [ChatGPT Dynamic Replies GitHub repository](https://github.com/Forgetabyteit/ChatGPT-dynamic-replies/blob/main/userscript.js) into the new userscript.
 4. Save the userscript.
 
 ## How It Works
@@ -66,7 +66,7 @@ Once the userscript is installed and the custom instructions are set in ChatGPT,
 
 ## Repository Link
 
-You can find the userscript and additional documentation in the [ChatGPT Dynamic Replies GitHub repository](https://github.com/your-repo-link).
+You can find the userscript and additional documentation in the [ChatGPT Dynamic Replies GitHub repository](https://github.com/Forgetabyteit/ChatGPT-dynamic-replies).
 
 ## Contribution
 
@@ -74,7 +74,7 @@ Feel free to contribute to this project by submitting issues or pull requests on
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/your-repo-link/LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/Forgetabyteit/ChatGPT-dynamic-replies/blob/main/LICENSE) file for details.
 
 ---
 
