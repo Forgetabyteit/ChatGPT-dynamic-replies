@@ -2,12 +2,13 @@
 
 Welcome to the **ChatGPT Dynamic Replies** project! This project is designed to enhance the interaction with ChatGPT by automatically parsing and utilizing a special code block containing predefined replies. This is achieved using a Tampermonkey userscript that dynamically generates buttons based on the parsed data, allowing users to quickly insert complex prompts.
 
-## Preview
-![ChatGPT Dynamic Replies Preview](/preview.png)
-
 ## Project Overview
 
 This project leverages a Tampermonkey userscript to detect a specific code block in ChatGPT responses. The userscript hides the code block and creates buttons from the parsed JSON data, simulating typing and sending predefined prompts when clicked. This improves the efficiency and depth of conversations with ChatGPT.
+
+## Preview
+
+![ChatGPT Dynamic Replies Preview](/preview.png)
 
 ## Custom Instructions for ChatGPT
 
