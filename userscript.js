@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ChatGPT dynamic user replies
 // @namespace    http://tampermonkey.net/
-// @version      1.6
+// @version      1.1.1
 // @description  Detects when a specific element appears and disappears on the page, then checks for userReplies code block in the last element of a specified class and logs the parsed JSON or "none" if not found. Hides the pre element containing the userReplies code block at all times using CSS styling. Adds styled buttons dynamically based on userReplies JSON data before a specified element, with transparent background and inherited font color. Simulates typing the message in #prompt-textarea and clicks the send button on button click. Destroys buttons when stop button appears again.
 // @match        https://chatgpt.com/*
 // @grant        none
@@ -127,6 +127,17 @@
                 isEditing = false;
             };
 
+            button.addEventListener('click', () => {
+                if (!isEditing) {
+                    // Simulate typing and send the prompt without editing
+                    const textarea = document.querySelector(CONFIG.textareaSelector);
+                    simulateTyping(textarea, reply.prompt);
+                    setTimeout(() => {
+                        document.querySelector(CONFIG.sendButtonSelector).click();
+                    }, 200); // Adjust timeout if necessary
+                }
+            });
+
             editElement.addEventListener('click', (event) => {
                 event.stopPropagation(); // Prevent the button click from triggering the edit
                 if (promptElement.contentEditable === 'true') {
@@ -221,8 +232,7 @@
                 if (!appearingElement && elementVisible) {
                     console.log('Element disappeared');
                     elementVisible = false;
-                    // after 50ms check for userReplies code block
-                    setTimeout(checkForUserReplies, 50);
+                    setTimeout(checkForUserReplies, 10);
                 }
             }
         }

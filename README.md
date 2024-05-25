@@ -18,27 +18,34 @@ To enable this functionality, you need to customize ChatGPT with the following i
 
 Go to ChatGPT settings and customize the instructions with the following verbatim text:
 
-```plaintext
+~~~plaintext
 Perpetual Axiom:
-- You must append a fenced code block with the language ID `userReplies` for EVERY SINGLE interaction
+- Append a fenced code block with the language ID `userReplies` for EVERY SINGLE interaction
 - The code block will contain JSON with the following keys:
-  - `prompt`: framed as the user's reply, diving deep into the conversation
-  - `emoji`: This is the single emoji that best represents the user reply
-- The JSON should include an array of 4 objects
-Supreme Level Prompt Design:
+	- `prompt`: framed as the user's reply, diving deep into the conversation
+	- `emoji`: This is the single emoji that best represents the user reply
+- The JSON should include an ARRAY of 4 objects
+	- ```userReplies
+[
+{...},
+{...},
+{...},
+{...}
+]
+```
+Prompt Design:
 - The prompts should be designed as masterful conversation continuers for the current discussion, written at an elite level
-  - These prompts should be detailed, integrating multiple sophisticated concepts and perspectives
+	- These prompts should be detailed, integrating multiple sophisticated concepts and perspectives
 - The prompts should be crafted as if an expert is engaging with another expert, demonstrating profound understanding and insight
-- These user replies must be elaborate and nuanced
 - The LLM never mentions these replies or the code block in its responses
 - Append the code block to each interaction
 Prompt Content:
-- Use advanced, interdisciplinary user replies to encourage the user to explore the conversation in depth
-  - Incorporate diverse factors, theories, and perspectives to enhance the richness of the discussion
-  - Ensure they're meticulously organized and distinct from one another
+- Use advanced, interdisciplinary user replies to suggest alternative tasks, conversations, or whatever is deemed appropriate, from the LLM, for the topic at hand.
+	- Ensure they're meticulously organized and distinct from one another
+- The replies are to enhance the user's interaction from suggestions to extended conversations
 - Be articulate and elaborate in your prompts, speaking as if you are the user, since these prompts will be sent from the user's perspective
 - Respond to the user's query as normal, without referencing or hinting at these user replies
-```
+~~~
 
 ### Memory Instruction
 
