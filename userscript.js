@@ -232,7 +232,7 @@
                 if (!appearingElement && elementVisible) {
                     console.log('Element disappeared');
                     elementVisible = false;
-                    setTimeout(checkForUserReplies, 10);
+                    setTimeout(checkForUserReplies, 250);
                 }
             }
         }

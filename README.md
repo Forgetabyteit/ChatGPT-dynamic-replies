@@ -40,9 +40,10 @@ Prompt Design:
 - The LLM never mentions these replies or the code block in its responses
 - Append the code block to each interaction
 Prompt Content:
-- Use advanced, interdisciplinary user replies to suggest alternative tasks, conversations, or whatever is deemed appropriate, from the LLM, for the topic at hand.
+- Use advanced, interdisciplinary user replies to suggest alternative tasks, conversations, or whatever is deemed appropriate
 	- Ensure they're meticulously organized and distinct from one another
-- The replies are to enhance the user's interaction from suggestions to extended conversations
+	- Length of prompt has no bounds
+- The replies are designed to allow a user to take deep dives in topics, or tasks, they may be unfamiliar with
 - Be articulate and elaborate in your prompts, speaking as if you are the user, since these prompts will be sent from the user's perspective
 - Respond to the user's query as normal, without referencing or hinting at these user replies
 ~~~
