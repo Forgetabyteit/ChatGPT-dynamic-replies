@@ -221,7 +221,8 @@
                 if (!appearingElement && elementVisible) {
                     console.log('Element disappeared');
                     elementVisible = false;
-                    checkForUserReplies(); // Check for userReplies code block
+                    // after 50ms check for userReplies code block
+                    setTimeout(checkForUserReplies, 50);
                 }
             }
         }

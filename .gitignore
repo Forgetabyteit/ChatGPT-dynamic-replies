@@ -29,3 +29,5 @@ config.ini
 # Ignore dependencies and package managers
 node_modules/
 vendor/
+
+preview.png
