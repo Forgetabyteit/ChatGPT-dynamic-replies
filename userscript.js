@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name         ChatGPT dynamic user replies
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.6
 // @description  Detects when a specific element appears and disappears on the page, then checks for userReplies code block in the last element of a specified class and logs the parsed JSON or "none" if not found. Hides the pre element containing the userReplies code block at all times using CSS styling. Adds styled buttons dynamically based on userReplies JSON data before a specified element, with transparent background and inherited font color. Simulates typing the message in #prompt-textarea and clicks the send button on button click. Destroys buttons when stop button appears again.
 // @match        https://chatgpt.com/*
 // @grant        none
-// @author       James Griffing & GPT-4o
 // ==/UserScript==
 
 (function() {
@@ -24,6 +23,7 @@
     };
 
     let elementVisible = false; // Track the visibility state of the element
+    let isEditing = false; // Track if any prompt is currently being edited
 
     // Inject CSS to hide <pre> elements containing userReplies code blocks and style buttons
     const style = document.createElement('style');
@@ -72,6 +72,9 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        .${CONFIG.buttonClass} .edit {
+            cursor: pointer;
+        }
         .${CONFIG.buttonContainerClass}:hover .${CONFIG.buttonClass} {
             white-space: normal;
             background-color: rgba(0, 0, 0, 0.1);
@@ -104,15 +107,45 @@
             button.className = CONFIG.buttonClass;
             button.innerHTML = `
                 <span class="emoji">${reply.emoji}</span>
-                <span class="prompt">${reply.prompt}</span>
+                <span class="prompt" contenteditable="false">${reply.prompt}</span>
+                <span class="edit">✏️</span>
             `;
-            button.addEventListener('click', () => {
+
+            const editElement = button.querySelector('.edit');
+            const promptElement = button.querySelector('.prompt');
+
+            const savePrompt = () => {
+                promptElement.contentEditable = 'false';
+                editElement.textContent = '✏️';
+                reply.prompt = promptElement.textContent; // Update the prompt in the JSON
+                // Simulate typing and send the updated prompt
                 const textarea = document.querySelector(CONFIG.textareaSelector);
                 simulateTyping(textarea, reply.prompt);
                 setTimeout(() => {
                     document.querySelector(CONFIG.sendButtonSelector).click();
                 }, 200); // Adjust timeout if necessary
+                isEditing = false;
+            };
+
+            editElement.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent the button click from triggering the edit
+                if (promptElement.contentEditable === 'true') {
+                    savePrompt();
+                } else {
+                    isEditing = true;
+                    promptElement.contentEditable = 'true';
+                    promptElement.focus();
+                    editElement.textContent = '💾';
+                }
             });
+
+            // Add blur event to save changes
+            promptElement.addEventListener('blur', () => {
+                if (isEditing) {
+                    savePrompt();
+                }
+            });
+
             buttonContainer.appendChild(button);
         });
 
